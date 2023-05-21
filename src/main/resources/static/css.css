@@ -1,0 +1,16 @@
+#roles {
+    height: 55px;
+    width: 100%;
+}
+
+#new-user {
+    text-align: center;
+}
+
+#addNewUserFooter {
+    display: block;
+}
+
+#edit-modal {
+    text-align: center;
+}
