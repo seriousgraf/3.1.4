@@ -26,10 +26,7 @@ public class UserServiceImpl implements UserService{
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Override
-    public List<Role> findAllRoles() {
-        return roleRepository.findAll();
-    }
+
 
     @Override
     public List<User> findAllUsers() {
@@ -72,4 +69,7 @@ public class UserServiceImpl implements UserService{
         return userRepository.findUserById(id);
     }
 
-}
+
+    }
+
+

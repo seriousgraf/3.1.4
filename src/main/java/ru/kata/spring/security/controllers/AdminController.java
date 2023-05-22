@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.security.models.Role;
 import ru.kata.spring.security.models.User;
 import ru.kata.spring.security.security.UserUserDetailsImpl;
+import ru.kata.spring.security.services.RoleService;
 import ru.kata.spring.security.services.UserService;
-import ru.kata.spring.security.services.UserServiceImpl;
+
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Collections;
@@ -21,10 +22,12 @@ import java.util.List;
 public class AdminController {
 
     private final UserService userService;
+    private final RoleService roleService;
 
     @Autowired
-    public AdminController(UserService userService) {
+    public AdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
 
     @GetMapping("/users")
@@ -37,7 +40,7 @@ public class AdminController {
         List<User> users = Collections.singletonList(userService.getUser(user.getId()));
         model.addAttribute("user", users);
 
-        List<Role> allRoles = userService.findAllRoles();
+        List<Role> allRoles = roleService.findAllRoles();
         model.addAttribute("allRoles", allRoles);
 
         User newUser = new User();
@@ -50,7 +53,7 @@ public class AdminController {
     public String saveUser(@Valid @ModelAttribute("user") User user,
                            BindingResult bindingResult, Model model) {
 
-        List<Role> roles = userService.findAllRoles();
+        List<Role> roles = roleService.findAllRoles();
         model.addAttribute("allRoles", roles);
 
         if (bindingResult.hasErrors()) {

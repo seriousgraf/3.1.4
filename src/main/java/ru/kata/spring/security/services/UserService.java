@@ -8,7 +8,7 @@ public interface UserService {
 
     public List<User> findAllUsers();
 
-    public List<Role> findAllRoles();
+
 
     public User getUser(int id);
 
